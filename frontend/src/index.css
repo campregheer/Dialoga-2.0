@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Paleta Dialoga: Calma e Acolhimento */
+    --background: 210 40% 98%;
+    /* #F8FBFE - Branco com leve tom azul */
+    --foreground: 215 25% 27%;
+    /* Cinza escuro quase grafite #334155 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    --primary: 191 76% 45%;
+    /* Pacific Blue #1CA9C9 - Suave e confiável */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 199 89% 86%;
+    /* Light Sky Blue #B9E5FB - Acolhedor */
+    --secondary-foreground: 191 76% 25%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    /* Cinza médio */
+
+    --accent: 199 89% 95%;
+    --accent-foreground: 191 76% 45%;
+
+    --destructive: 0 84% 60%;
+    /* Vermelho discreto */
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 191 76% 45%;
+
+    --radius: 1.25rem;
+    /* Formas bem arredondadas */
+
+    /* Estados */
+    --success: 142 71% 45%;
+    --warning: 48 96% 89%;
+    /* Amarelo suave */
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --primary: 191 76% 45%;
+    --primary-foreground: 0 0% 100%;
+  }
+}
+
+@layer components {
+  .btn-dialoga {
+    @apply h-12 px-6 rounded-2xl font-semibold transition-all duration-200 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .card-soft {
+    @apply bg-white rounded-[2rem] border border-blue-50/50 shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-6;
+  }
+
+  .input-dialoga {
+    @apply h-14 rounded-2xl bg-white border-slate-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-base px-5;
+  }
+
+  .text-heading {
+    @apply font-bold text-slate-800 tracking-tight;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply overflow-x-hidden;
+    max-width: 100vw;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+/* Animações Suaves */
+@keyframes soft-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-soft-float {
+  animation: soft-float 6s ease-in-out infinite;
+}
