@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
 import type { ReactNode } from 'react';
-// import { Aperture } from 'lucide-react';
+
 
 interface User {
   id: string;

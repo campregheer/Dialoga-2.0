@@ -7,7 +7,7 @@ const app = express();
 
 app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: 'https://dialoga-2-0.vercel.app',
   credentials: true,
 }));
 app.use(express.json());

@@ -35,7 +35,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -74,7 +74,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     res.cookie('jwt', token, {
       httpOnly: true,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
