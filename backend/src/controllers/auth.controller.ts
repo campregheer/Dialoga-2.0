@@ -10,6 +10,8 @@ const generateToken = (userId: string, role: string) => {
   });
 };
 
+const isProd = process.env.NODE_ENV === 'development';
+
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password, role, profile } = req.body;
@@ -34,8 +36,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     res.cookie('jwt', token, {
       httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
+      secure: isProd,
+      sameSite:  isProd ? 'lax' : 'lax',
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 

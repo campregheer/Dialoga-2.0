@@ -39,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Desktop menu */}
         <div className="hidden md:flex items-center gap-3">
-          {showProfessionalButton && (user?.role === 'profissional' || 'admin') && (
+          {showProfessionalButton && (user?.role !== 'jovem') && (
             <Button
               variant="outline"
               onClick={() => navigate('/dashboard/profissional')}
@@ -88,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-white border-b border-blue-50 shadow-lg md:hidden">
           <div className="p-4 space-y-3">
-            {showProfessionalButton && (user?.role === 'profissional' || 'admin') && (
+            {showProfessionalButton && (user?.role !== 'jovem') && (
               <Button
                 variant="outline"
                 onClick={() => { navigate('/dashboard/profissional'); setMobileMenuOpen(false); }}

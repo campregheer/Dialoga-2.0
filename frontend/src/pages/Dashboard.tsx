@@ -242,8 +242,9 @@ export const Dashboard = () => {
       alert('Relato enviado com segurança. Um profissional analisará em breve.');
       setShowReportModal(false);
       setReportDesc('');
-    } catch {
-      alert('Erro ao enviar relato.');
+    }catch (err: any) {
+      console.error(err);
+      alert(err.response?.data?.error || 'Erro ao enviar relato');
     } finally {
       setReportLoading(false);
     }
