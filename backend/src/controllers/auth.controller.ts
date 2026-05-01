@@ -97,7 +97,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 export const logout = (req: Request, res: Response): void => {
 res.cookie('jwt', '', {
   httpOnly: true,
-  secure: process.env.NODE_ENV === 'production',
+  secure: isProd,
   sameSite: 'lax',
   expires: new Date(0),
   path: '/',
