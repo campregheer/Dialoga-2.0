@@ -13,16 +13,17 @@ export const createReport = async (req: AuthRequest, res: Response): Promise<voi
 
     // Se isAnonymous for true, NÃO salvamos o author no banco.
     // Isso garante que NINGUÉM (nem admin) consegue rastrear quem fez a denúncia.
-    const reportData: {
-      type: string;
-      description: string;
-      isAnonymous: boolean;
-      author?: typeof req.user._id;
-    } = { type, description, isAnonymous };
+    const reportData: any = {
+      type,
+      description,
+      isAnonymous,
+    } 
 
     if (!isAnonymous) {
-      reportData.author = req.user._id;
+      reportData.profile = req.user.profile;
+      reportData.email = req.user.email;
     }
+
 
     const report = await Report.create(reportData);
 

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MessageCircle, ShieldCheck, Heart, Users, ArrowRight, Sparkles } from 'lucide-react';
+import { ShieldCheck, Heart, Users, ArrowRight, Sparkles } from 'lucide-react';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -17,8 +17,8 @@ export const HomePage = () => {
       {/* Header/Nav */}
       <header className="relative z-10 h-16 md:h-20 flex items-center px-4 md:px-12 max-w-7xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 md:w-10 md:h-10 bg-primary rounded-xl md:rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-            <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+          <div className="w-35 h-35 md:w-14 md:h-10  rounded-xl md:rounded-2xl flex items-center justify-center">
+            <img src="/Dialoga Logo S fundo.png " alt="logo dialoga" />
           </div>
           <h1 className="text-xl md:text-2xl font-bold text-slate-800 tracking-tight">Dialoga</h1>
         </div>

@@ -4,7 +4,8 @@ export interface IReport extends Document {
   type: string;
   description: string;
   isAnonymous: boolean;
-  author?: mongoose.Types.ObjectId; // Pode estar ausente se a denúncia for 100% anônima ou não logada (no nosso caso, o autor existe, mas não o exibimos).
+  profile?: string; // Pode estar ausente se a denúncia for 100% anônima ou não logada (no nosso caso, o autor existe, mas não o exibimos).
+  email?: string; // Pode estar ausente se a denúncia for 100% anônima ou não logada (no nosso caso, o autor existe, mas não o exibimos).
   createdAt: Date;
   updatedAt: Date;
 }
@@ -25,9 +26,17 @@ const reportSchema = new Schema<IReport>(
       type: Boolean,
       default: true,
     },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
+    profile: {
+      type: String,
+      required: function(){
+        return !this.isAnonymous;
+      }
+    },
+    email: {
+      type: String,
+      required: function(){
+        return !this.isAnonymous;
+      }
     },
   },
   {

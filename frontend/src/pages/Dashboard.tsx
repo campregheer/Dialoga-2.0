@@ -179,6 +179,7 @@ export const Dashboard = () => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [reportType, setReportType] = useState('outro');
   const [reportDesc, setReportDesc] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [reportLoading, setReportLoading] = useState(false);
 
   useEffect(() => {
@@ -238,7 +239,19 @@ export const Dashboard = () => {
     if (!reportDesc.trim()) return;
     setReportLoading(true);
     try {
-      await api.post('/reports', { type: reportType, description: reportDesc, isAnonymous: true });
+
+      const res: any = {
+        type: reportType,
+        description: reportDesc,
+        isAnonymous 
+      };
+
+      if (!isAnonymous){
+        res.name = user?.profile,
+        res.email = user?.email
+      }
+
+      await api.post('/reports', res);
       alert('Relato enviado com segurança. Um profissional analisará em breve.');
       setShowReportModal(false);
       setReportDesc('');
@@ -426,7 +439,16 @@ export const Dashboard = () => {
 
       {/* Modal de Alerta */}
       <Dialog open={showReportModal} onOpenChange={setShowReportModal}>
-        <DialogContent className="sm:max-w-[450px] rounded-[2.5rem] border-none p-8 font-['Nunito_Sans']">
+        <DialogContent className="
+          w-[95vw] 
+          max-w-[450px] 
+          max-h-[90vh] 
+          overflow-y-auto
+          rounded-[2.5rem] 
+          border-none 
+          p-6 sm:p-8 
+          font-['Nunito_Sans']
+        ">
           <DialogHeader className="space-y-4">
             <div className="w-14 h-14 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-500 mx-auto">
               <ShieldAlert className="w-8 h-8" />
@@ -460,6 +482,34 @@ export const Dashboard = () => {
                 value={reportDesc}
                 onChange={(e) => setReportDesc(e.target.value)}
               />
+            </div>
+            <div className="flex items-center justify-between bg-slate-50 p-4 rounded-2xl">
+              <div>
+                <p className="text-sm font-bold text-slate-700">
+                  Enviar como anônimo
+                </p>
+
+                <p className="text-xs text-slate-400">
+                  {isAnonymous
+                    ? 'Seu nome não será exibido'
+                    : 'Seu nome e email serão fornecidos'}
+                </p>
+              </div>
+
+              <button
+                onClick={() => setIsAnonymous(!isAnonymous)}
+                className={`
+                  w-12 h-6 flex items-center rounded-full transition-colors
+                  ${isAnonymous ? 'bg-rose-500' : 'bg-slate-300'}
+                `}
+              >
+                <div
+                  className={`
+                    w-5 h-5 bg-white rounded-full shadow-md transform transition-transform
+                    ${isAnonymous ? 'translate-x-6' : 'translate-x-1'}
+                  `}
+                />
+              </button>
             </div>
           </div>
           <DialogFooter className="flex-col sm:flex-row gap-3">
