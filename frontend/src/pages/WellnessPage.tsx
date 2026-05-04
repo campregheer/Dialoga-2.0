@@ -84,13 +84,24 @@ const WellnessPage = () => {
       <div className="max-w-4xl mx-auto space-y-8 relative z-10">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100/50 mb-6">
+          <div className="flex items-center gap-3">
+            <img 
+              src="/Dialoga Logo S fundo.png" 
+              alt="logo dialoga" 
+              className="h-10 w-auto"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800">Dialoga</h2>
+              <p className="text-sm text-slate-400">Centro de Bem-estar</p>
+            </div>
+          </div>
           <Button 
             variant="ghost" 
             onClick={() => navigate('/dashboard')} 
-            className="gap-2 self-start hover:bg-white/40 transition-colors"
+            className="gap-2 self-start md:self-auto hover:bg-white/40 transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> Voltar ao Painel
+            <ArrowLeft className="w-4 h-4" /> Voltar
           </Button>
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white rounded-full shadow-md animate-float">

@@ -61,10 +61,17 @@ export const AdminDashboard = () => {
       {/* Main Content */}
       <main className="lg:ml-64 p-6 md:p-10 space-y-10">
         {/* Header Mobile/Tablet */}
-        <header className="flex justify-between items-center mb-8">
-          <div>
-            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Bom dia, Administrador</h2>
-            <p className="text-slate-400 text-sm font-medium">Aqui está o que aconteceu na plataforma hoje.</p>
+        <header className="flex justify-between items-center mb-8 pb-6 border-b border-slate-100/50">
+          <div className="flex items-center gap-4">
+            <img 
+              src="/Dialoga Logo S fundo.png" 
+              alt="logo dialoga" 
+              className="h-10 w-auto"
+            />
+            <div>
+              <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Dialoga</h2>
+              <p className="text-slate-400 text-sm font-medium">Painel Admin</p>
+            </div>
           </div>
           <div className="flex items-center gap-4">
             <Button variant="outline" size="icon" className="rounded-xl border-slate-200 text-slate-400 relative">

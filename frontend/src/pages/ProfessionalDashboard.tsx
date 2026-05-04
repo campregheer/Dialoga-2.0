@@ -13,8 +13,7 @@ import {
   Lock, 
   ChevronRight, 
   ChevronLeft,
-  CheckCircle2,
-  LayoutDashboard
+  CheckCircle2
 } from 'lucide-react';
 
 interface Stats {
@@ -102,13 +101,15 @@ export const ProfessionalDashboard = () => {
         <div className="absolute bottom-[-5%] left-[-5%] w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
       </div>
 
-      {/* Header Premium - Consistência com Dashboard Jovem */}
+      {/* Header Premium - Com Logo */}
       <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-xl border-b border-blue-50/50 h-20 flex items-center">
         <div className="max-w-5xl mx-auto w-full px-6 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-              <LayoutDashboard className="w-6 h-6" />
-            </div>
+            <img 
+              src="/Dialoga Logo S fundo.png" 
+              alt="logo dialoga" 
+              className="h-10 w-auto"
+            />
             <div>
               <h1 className="text-xl font-bold text-slate-800 tracking-tight leading-none">Dialoga</h1>
               <span className="text-[10px] font-black uppercase tracking-widest text-primary opacity-70">Painel Profissional</span>

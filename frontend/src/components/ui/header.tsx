@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, LogOut, ShieldAlert, LayoutDashboard, Menu, X } from 'lucide-react';
+import { LogOut, ShieldAlert, LayoutDashboard, Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   showReportButton?: boolean;
@@ -31,9 +31,11 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-50 bg-white/60 backdrop-blur-xl border-b border-blue-50/50 h-16 md:h-20 flex items-center ">
       <div className="max-w-4xl mx-auto w-full px-4 md:px-6 flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 md:w-10 md:h-10 bg-primary rounded-xl md:rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-            <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
-          </div>
+          <img 
+            src="/Dialoga Logo S fundo.png" 
+            alt="logo dialoga" 
+            className="h-10 md:h-12 w-auto"
+          />
           <h1 className="text-lg md:text-xl font-bold text-slate-800 tracking-tight">Dialoga</h1>
         </div>
 

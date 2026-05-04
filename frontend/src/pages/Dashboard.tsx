@@ -62,6 +62,7 @@ interface Post {
   userLiked: boolean;
 }
 
+
 // --- Sub-componente: PostCard ---
 const PostCard = ({ post, onLikeToggle }: { post: Post; onLikeToggle: (id: string) => void }) => {
   const [showComments, setShowComments] = useState(false);
@@ -181,6 +182,23 @@ export const Dashboard = () => {
   const [reportDesc, setReportDesc] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [reportLoading, setReportLoading] = useState(false);
+  const [suggestion, setSuggestion] = useState("");
+  const [loadingSuggestion, setLoadingSuggestion] = useState(false);
+
+const handleGetSuggestion = async () => {
+  try {
+    setLoadingSuggestion(true);
+
+    const res = await api.get("/ai/diary-suggestion");
+    setSuggestion(res.data.phrase);
+
+  } catch (err) {
+    console.error(err);
+    setSuggestion("Hoje eu me senti...");
+  } finally {
+    setLoadingSuggestion(false);
+  }
+};
 
   useEffect(() => {
     if (user?.role === 'jovem') {
@@ -375,39 +393,66 @@ export const Dashboard = () => {
 
           <TabsContent value="diary" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Novo Diário */}
-            <Card className="card-soft bg-white border-none shadow-sm p-8 space-y-6">
+          <Card className="card-soft bg-white border-none shadow-sm p-8 space-y-6">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-800 tracking-tight">O que você está pensando?</h3>
-                  <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Só você verá isto</p>
+                  <h3 className="font-bold text-slate-800 tracking-tight">
+                    O que você está pensando?
+                  </h3>
+                  <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">
+                    Só você verá isto
+                  </p>
                 </div>
               </div>
-              <form onSubmit={handleSaveDiary} className="space-y-4">
-                <Input
-                  placeholder="Como você se sente? (ex: Calmo, Animado...)"
-                  value={diaryEmotion}
-                  onChange={(e) => setDiaryEmotion(e.target.value)}
-                  className="h-12 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 transition-all text-slate-600 font-medium"
-                />
-                <Textarea
-                  placeholder="Escreva sobre o seu dia..."
-                  value={diaryContent}
-                  onChange={(e) => setDiaryContent(e.target.value)}
-                  className="rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 transition-all resize-none p-5 text-slate-600 font-medium"
-                  rows={4}
-                />
-                <Button
-                  type="submit"
-                  disabled={!diaryContent.trim()}
-                  className="w-full h-12 bg-slate-800 hover:bg-slate-900 rounded-xl font-bold shadow-lg transition-all text-white"
-                >
-                  Guardar Memória
-                </Button>
-              </form>
-            </Card>
+
+    {/* BOTÃO DE INSPIRAÇÃO */}
+    <button
+      type="button"
+      onClick={handleGetSuggestion}
+      className="text-xs bg-emerald-100 hover:bg-emerald-200 text-emerald-700 px-3 py-2 rounded-lg font-bold transition"
+    >
+      {loadingSuggestion ? "Carregando..." : "💡 Inspirar"}
+    </button>
+  </div>
+
+  <form onSubmit={handleSaveDiary} className="space-y-4">
+    <Input
+      placeholder="Como você se sente? (ex: Calmo, Animado...)"
+      value={diaryEmotion}
+      onChange={(e) => setDiaryEmotion(e.target.value)}
+      className="h-12 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 transition-all text-slate-600 font-medium"
+    />
+
+    <div className="relative">
+      <Textarea
+        placeholder="Escreva sobre o seu dia..."
+        value={diaryContent}
+        onChange={(e) => setDiaryContent(e.target.value)}
+        className="rounded-2xl bg-slate-50 border-none focus:ring-2 focus:ring-primary/10 transition-all resize-none p-5 text-slate-600 font-medium pr-10"
+        rows={4}
+      />
+
+      {/* FRASE DE INSPIRAÇÃO */}
+      {suggestion && (
+        <p className="mt-2 text-sm text-emerald-600 italic">
+          {suggestion}
+        </p>
+      )}
+    </div>
+
+    <Button
+      type="submit"
+      disabled={!diaryContent.trim()}
+      className="w-full h-12 bg-slate-800 hover:bg-slate-900 rounded-xl font-bold shadow-lg transition-all text-white"
+    >
+      Guardar Memória
+    </Button>
+  </form>
+</Card>
 
             {/* Lista Diário */}
             <div className="grid gap-4">

@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { MessageCircle, Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,9 +34,11 @@ const Login = () => {
 
       <div className="w-full max-w-md relative z-10">
         <div className="flex items-center gap-3 justify-center mb-10">
-          <div className="w-10 h-10 bg-primary rounded-2xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-            <MessageCircle className="w-6 h-6" />
-          </div>
+          <img 
+            src="/Dialoga Logo S fundo.png" 
+            alt="logo dialoga" 
+            className="h-10 w-auto"
+          />
           <h1 className="text-2xl font-bold text-slate-800 tracking-tight">Dialoga</h1>
         </div>
 

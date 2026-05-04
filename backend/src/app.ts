@@ -18,12 +18,14 @@ import diaryRoutes from './routes/diary.routes';
 import communityRoutes from './routes/community.routes';
 import reportRoutes from './routes/report.routes';
 import professionalRoutes from './routes/professional.routes';
+import aiRoutes from './routes/ai.routes'
 
 app.use('/api/auth', authRoutes);
 app.use('/api/diary', diaryRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/professional', professionalRoutes);
+app.use('/api/ai', aiRoutes)
 
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
